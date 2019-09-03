@@ -1,0 +1,126 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by RemoteClient.rc
+//
+#define IDOK2                           3
+#define IDD_ABOUTBOX                    100
+#define IDP_OLE_INIT_FAILED             100
+#define IDP_SOCKETS_INIT_FAILED         104
+#define IDR_MAINFRAME                   128
+#define IDR_RemoteClientTYPE            129
+#define IDI_ICON_CMP                    131
+#define IDB_BITMAP                      132
+#define IDR_MEN_CTRL                    133
+#define IDD_PROCESS                     134
+#define IDR_MEN_PROCESS                 135
+#define IDD_CMDSHELL                    136
+#define IDD_SVNMANAGE                   137
+#define IDR_MEN_SVCCTRL                 138
+#define IDD_SVCNEW                      139
+#define IDD_FILEMANEGE                  141
+#define IDI_ICON_HARDISK                142
+#define IDI_ICON_DVD                    143
+#define IDI_ICON_UPAN                   144
+#define IDI_ICON_FILE                   145
+#define IDI_ICON_NETDISK                146
+#define IDI_ICON_FLOPY                  147
+#define IDR_MEN_FILE                    148
+#define IDD_DIRCREATE                   149
+#define IDD_SCREEM                      150
+#define IDD_BUILD                       151
+#define IDD_PORT                        152
+#define IDC_LIST3                       1002
+#define IDC_LIST4                       1003
+#define IDC_CMDSHOW                     1004
+#define IDC_LIST_SVC                    1005
+#define IDC_SVCNAME                     1006
+#define IDC_SVCDISNAME                  1007
+#define IDC_SVCDISCREAPTION             1008
+#define IDC_COM_CURRENT                 1009
+#define IDC_COM_STATUS                  1010
+#define IDC_TREE                        1010
+#define IDC_SVCPATH                     1011
+#define IDC_FILEPATH                    1011
+#define IDC_LIST                        1012
+#define IDC_PROGRESS1                   1013
+#define IDC_BUTTON_CANSEND              1014
+#define IDC_EDIT1                       1015
+#define IDC_PORT                        1016
+#define IDC_IP                          1017
+#define ID_CTRL_32771                   32771
+#define ID_CTRL_                        32772
+#define ID_CTRL_EXIT                    32773
+#define ID_CTRL_32774                   32774
+#define ID_CTRL_PROCESS                 32775
+#define ID_PROCESS_32776                32776
+#define ID_PROCESS_32777                32777
+#define ID_PROCESS_32778                32778
+#define ID_PROCESS_                     32779
+#define ID_PROCESS_EXITPRO              32780
+#define ID_PROCESS_MODULE               32781
+#define ID_PROCESS_BURSH                32782
+#define ID_CTRL_32783                   32783
+#define ID_CTRL_CMD                     32784
+#define ID_CTRL_32785                   32785
+#define ID_32786                        32786
+#define ID_32787                        32787
+#define ID_32788                        32788
+#define ID_LOGOUT                       32789
+#define ID_RESTART                      32790
+#define ID_SHUTDOWN                     32791
+#define ID_CTRL_32792                   32792
+#define ID_CTRL_SVCMANAGE               32793
+#define ID_32794                        32794
+#define ID_SVC                          32795
+#define ID_SVCSTART                     32796
+#define ID_32797                        32797
+#define ID_BURSH                        32798
+#define ID_32799                        32799
+#define ID_                             32800
+#define ID_STOPSVC                      32801
+#define ID_32802                        32802
+#define ID_32803                        32803
+#define ID_32804                        32804
+#define ID_32805                        32805
+#define ID_AUTO                         32806
+#define ID_BOOT                         32807
+#define ID_DISABLE                      32808
+#define ID_SVCDELETE                    32809
+#define ID_32810                        32810
+#define ID_SVCNEW                       32811
+#define ID_CREATESVC                    32812
+#define IDM_                            32813
+#define ID_CT                           32814
+#define ID_CTRL_FILE                    32815
+#define ID_FILEMENU_32816               32816
+#define ID_FILEMENU_32817               32817
+#define ID_FILEMEN                      32818
+#define ID_FILEMENU_RUN                 32819
+#define ID_FILEMENU_DEL                 32820
+#define ID_FILEMENU_32821               32821
+#define ID_FILEMENU_32822               32822
+#define ID_FILEMENU_DELDIR              32823
+#define ID_FILEMENU_CREATEDIR           32824
+#define ID_FILEMENU_32825               32825
+#define ID_FILEMENU_32826               32826
+#define ID_FILEMENU_DOWN                32827
+#define ID_FILEMENU_UP                  32828
+#define ID_FILEMENU_32829               32829
+#define ID_FILEMENU_BRUSH               32830
+#define ID_CTRL_32831                   32831
+#define ID_CTRL_SCREEN                  32832
+#define ID_32833                        32833
+#define ID_BUILD                        32834
+#define ID_32835                        32835
+#define ID_SETPORT                      32836
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        153
+#define _APS_NEXT_COMMAND_VALUE         32837
+#define _APS_NEXT_CONTROL_VALUE         1018
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif
