@@ -1,11 +1,11 @@
-// HappyNewYear.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+// HappyNewYear.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 /********************************************************
 *														*
-*	³ÌĞòÃû³Æ£º	ĞÂÄê×£¸£ÑÌ»¨								*
-*	±àÒë»·¾³£º	VS2013 && easyx(¶¬ÖÁ°æ)					*
-*	×÷ÕßÏà¹Ø£º	TanZhouEDU¡ª¾ÅÏÄÀÏÊ¦						*
-*	×îºóĞŞ¸Ä£º	2016Äê5ÔÂ19ÈÕ								*
+*	ç¨‹åºåç§°ï¼š	æ–°å¹´ç¥ç¦çƒŸèŠ±								*
+*	ç¼–è¯‘ç¯å¢ƒï¼š	VS2013 && easyx(å†¬è‡³ç‰ˆ)					*
+*	æœ€åä¿®æ”¹ï¼š	2016å¹´5æœˆ19æ—¥				*
+*									*
 *														*
 ********************************************************/
 #include "stdafx.h"
@@ -18,49 +18,49 @@
 #pragma comment ( lib, "Winmm.lib" )
 
 
-/***** ºê¶¨ÒåÇø ******/
+/***** å®å®šä¹‰åŒº ******/
 
-#define NUM		13			// ÑÌ»¨ÖÖÀàÊıÁ¿ºê¶¨Òå
+#define NUM		13			// çƒŸèŠ±ç§ç±»æ•°é‡å®å®šä¹‰
 
-/***** ½á¹¹¶¨ÒåÇø **********/
+/***** ç»“æ„å®šä¹‰åŒº **********/
 
-// ÑÌ»¨½á¹¹
+// çƒŸèŠ±ç»“æ„
 struct FIRE
 {
-	int r;					// µ±Ç°±¬Õ¨°ë¾¶
-	int max_r;				// ±¬Õ¨ÖĞĞÄ¾àÀë±ßÔµ×î´ó°ë¾¶
-	int x, y;				// ±¬Õ¨ÖĞĞÄÔÚ´°¿ÚµÄ×ø±ê
-	int cen_x, cen_y;		// ±¬Õ¨ÖĞĞÄÏà¶ÔÍ¼Æ¬×óÉÏ½ÇµÄ×ø±ê
-	int width, height;		// Í¼Æ¬µÄ¿í¸ß
-	int xy[240][240];		// ´¢´æÍ¼Æ¬ÏñËØµã
+	int r;					// å½“å‰çˆ†ç‚¸åŠå¾„
+	int max_r;				// çˆ†ç‚¸ä¸­å¿ƒè·ç¦»è¾¹ç¼˜æœ€å¤§åŠå¾„
+	int x, y;				// çˆ†ç‚¸ä¸­å¿ƒåœ¨çª—å£çš„åæ ‡
+	int cen_x, cen_y;		// çˆ†ç‚¸ä¸­å¿ƒç›¸å¯¹å›¾ç‰‡å·¦ä¸Šè§’çš„åæ ‡
+	int width, height;		// å›¾ç‰‡çš„å®½é«˜
+	int xy[240][240];		// å‚¨å­˜å›¾ç‰‡åƒç´ ç‚¹
 
-	bool show;				// ÊÇ·ñÕÀ·Å
-	bool draw;				// ¿ªÊ¼Êä³öÏñËØµã
-	DWORD t1, t2, dt;		// ÕÀ·ÅËÙ¶È
+	bool show;				// æ˜¯å¦ç»½æ”¾
+	bool draw;				// å¼€å§‹è¾“å‡ºåƒç´ ç‚¹
+	DWORD t1, t2, dt;		// ç»½æ”¾é€Ÿåº¦
 }Fire[NUM];
 
-// ÑÌ»¨µ¯½á¹¹
+// çƒŸèŠ±å¼¹ç»“æ„
 struct JET
 {
-	int x, y;				// ÅçÉäµã×ø±ê
-	int hx, hy;				// ×î¸ßµã×ø±ê------½«¸³Öµ¸ø FIRE ÀïÃæµÄ x, y
-	int height;				// ÑÌ»¨¸ß¶È
-	bool shoot;				// ÊÇ·ñ¿ÉÒÔ·¢Éä
+	int x, y;				// å–·å°„ç‚¹åæ ‡
+	int hx, hy;				// æœ€é«˜ç‚¹åæ ‡------å°†èµ‹å€¼ç»™ FIRE é‡Œé¢çš„ x, y
+	int height;				// çƒŸèŠ±é«˜åº¦
+	bool shoot;				// æ˜¯å¦å¯ä»¥å‘å°„
 
-	DWORD t1, t2, dt;		// ·¢ÉäËÙ¶È
-	IMAGE img[2];			// ´¢´æ»¨µ¯Ò»ÁÁÒ»°µÍ¼Æ¬
-	byte n : 1;				// Í¼Æ¬ÏÂ±ê
+	DWORD t1, t2, dt;		// å‘å°„é€Ÿåº¦
+	IMAGE img[2];			// å‚¨å­˜èŠ±å¼¹ä¸€äº®ä¸€æš—å›¾ç‰‡
+	byte n : 1;				// å›¾ç‰‡ä¸‹æ ‡
 }Jet[NUM];
 
 
-/**** º¯ÊıÉêÃ÷Çø ****/
+/**** å‡½æ•°ç”³æ˜åŒº ****/
 
-void Init(int);		// ³õÊ¼»¯ÑÌ»¨
-void Load();		// ¼ÓÔØÑÌ»¨Í¼Æ¬
-void Shoot();		// ·¢ÉäÑÌ»¨
-void Chose(DWORD&);		// É¸Ñ¡ÑÌ»¨
-void Style(DWORD&);		// ·¢ÉäÑùÊ½
-void Show(DWORD*);		// ÕÀ·ÅÑÌ»¨
+void Init(int);		// åˆå§‹åŒ–çƒŸèŠ±
+void Load();		// åŠ è½½çƒŸèŠ±å›¾ç‰‡
+void Shoot();		// å‘å°„çƒŸèŠ±
+void Chose(DWORD&);		// ç­›é€‰çƒŸèŠ±
+void Style(DWORD&);		// å‘å°„æ ·å¼
+void Show(DWORD*);		// ç»½æ”¾çƒŸèŠ±
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -68,53 +68,52 @@ int _tmain(int argc, _TCHAR* argv[])
 	initgraph(1100, 600);
 	srand((time_t)time(0));
 
-	// ²¥·Å±³¾°ÒôÀÖ
+	// æ’­æ”¾èƒŒæ™¯éŸ³ä¹
 	mciSendString("open ./fire/bk.mp3 alias bk", 0, 0, 0);
 	mciSendString("play bk repeat", 0, 0, 0);
 
 	//setfillstyle(0);
-	settextstyle(60, 0, "¿¬Ìå");
+	settextstyle(60, 0, "æ¥·ä½“");
 	setcolor(RED);
-	//outtextxy(300, 100, "C++ÏîÄ¿Á·Ï° By FZY");
-	//outtextxy(300, 200, "Ô¸Äã±¯ÉËÓĞÈË·Öµ££¡");
-	//outtextxy(300, 280, "Ô¸Äã¹Â¶ÀÓĞÈËÅã°é£¡");
+	//outtextxy(300, 100, "C++é¡¹ç›®ç»ƒä¹  By FZY");
+	//outtextxy(300, 200, "æ„¿ä½ æ‚²ä¼¤æœ‰äººåˆ†æ‹…ï¼");
+	//outtextxy(300, 280, "æ„¿ä½ å­¤ç‹¬æœ‰äººé™ªä¼´ï¼");
 	outtextxy(380, 200, "");
 	outtextxy(580, 200, "");
 	//getchar();
 	Sleep(2000);
 	cleardevice();
-	settextstyle(80, 0, "¿¬Ìå");
-	/*outtextxy(300, 50, "Ôø¾­");
-	outtextxy(300, 100, "ÓĞÒ»·İÕæÖ¿µÄ°®Çé°ÚÔÚÎÒµÄÃæÇ°");
-	outtextxy(300, 150, "ÎÒÃ»ÓĞÕäÏ§");
-	outtextxy(300, 200, "Ö±µ½Ê§È¥ÁË²Åºó»ÚÄª¼°");
-	outtextxy(300, 250, "ÊÀ¼ä×îÍ´¿àµÄÊÂÇéÄª¹ıÓÚ´Ë");
-	outtextxy(300, 300, "Èç¹ûÉÏÌìÄÜ¸øÎÒÒ»¸öÔÚÀ´Ò»´ÎµÄ»ú»á");
-	outtextxy(300, 350, "ÎÒ»á¶ÔÄÇ¸öÅ®º¢Ëµ");
-	outtextxy(300, 400, "ÎÒ°®Äã£¬Ò»ÍòÄê");
-	outtextxy(300, 460, "¡ª¡ª");*/
-	outtextxy(370, 200, "Love you forever£¡");
+	settextstyle(80, 0, "æ¥·ä½“");
+	/*outtextxy(300, 50, "æ›¾ç»");
+	outtextxy(300, 100, "æœ‰ä¸€ä»½çœŸæŒšçš„çˆ±æƒ…æ‘†åœ¨æˆ‘çš„é¢å‰");
+	outtextxy(300, 150, "æˆ‘æ²¡æœ‰çæƒœ");
+	outtextxy(300, 200, "ç›´åˆ°å¤±å»äº†æ‰åæ‚”è«åŠ");
+	outtextxy(300, 250, "ä¸–é—´æœ€ç—›è‹¦çš„äº‹æƒ…è«è¿‡äºæ­¤");
+	outtextxy(300, 300, "å¦‚æœä¸Šå¤©èƒ½ç»™æˆ‘ä¸€ä¸ªåœ¨æ¥ä¸€æ¬¡çš„æœºä¼š");
+	outtextxy(300, 350, "æˆ‘ä¼šå¯¹é‚£ä¸ªå¥³å­©è¯´");
+	outtextxy(300, 400, "çˆ±ä½ ä¸€ä¸‡å¹´");
+	outtextxy(300, 460, "â€”â€”");*/
 	
 
 	//getchar();
 	Sleep(2000);
-	settextstyle(70, 0, "¿¬Ìå");
-	DWORD t1 = timeGetTime();			// É¸Ñ¡ÑÌ»¨¼ÆÊ±
-	DWORD st1 = timeGetTime();			// ²¥·Å»¨Ñù¼ÆÊ±
-	DWORD* pMem = GetImageBuffer();		// »ñÈ¡´°¿ÚÏÔ´æÖ¸Õë
+	settextstyle(70, 0, "æ¥·ä½“");
+	DWORD t1 = timeGetTime();			// ç­›é€‰çƒŸèŠ±è®¡æ—¶
+	DWORD st1 = timeGetTime();			// æ’­æ”¾èŠ±æ ·è®¡æ—¶
+	DWORD* pMem = GetImageBuffer();		// è·å–çª—å£æ˜¾å­˜æŒ‡é’ˆ
 
-	for (int i = 0; i < NUM; i++)		// ³õÊ¼»¯ÑÌ»¨
+	for (int i = 0; i < NUM; i++)		// åˆå§‹åŒ–çƒŸèŠ±
 	{
 		Init(i);
 	}
-	Load();								// ½«ÑÌ»¨Í¼Æ¬ĞÅÏ¢¼ÓÔØ½øÏàÓ¦½á¹¹ÖĞ
-	BeginBatchDraw();					// ¿ªÊ¼ÅúÁ¿»æÍ¼
+	Load();								// å°†çƒŸèŠ±å›¾ç‰‡ä¿¡æ¯åŠ è½½è¿›ç›¸åº”ç»“æ„ä¸­
+	BeginBatchDraw();					// å¼€å§‹æ‰¹é‡ç»˜å›¾
 	
 	while (!kbhit())
 	{
 		Sleep(10);
 
-		// Ëæ»úÑ¡Ôñ 4000 ¸öÏñËØµã²Á³ı
+		// éšæœºé€‰æ‹© 4000 ä¸ªåƒç´ ç‚¹æ“¦é™¤
 		for (int clr = 0; clr < 1000; clr++)
 		{
 			for (int j = 0; j < 2; j++)
@@ -122,59 +121,59 @@ int _tmain(int argc, _TCHAR* argv[])
 				int px1 = rand() % 1100;
 				int py1 = rand() % 600;
 
-				if (py1 < 599)				// ·ÀÖ¹Ô½½ç
-					pMem[py1 * 1100 + px1] = pMem[py1 * 1100 + px1 + 1] = BLACK;	// ¶ÔÏÔ´æ¸³Öµ²Á³öÏñËØµã
+				if (py1 < 599)				// é˜²æ­¢è¶Šç•Œ
+					pMem[py1 * 1100 + px1] = pMem[py1 * 1100 + px1 + 1] = BLACK;	// å¯¹æ˜¾å­˜èµ‹å€¼æ“¦å‡ºåƒç´ ç‚¹
 			}
 		}
-		Chose(t1);			// É¸Ñ¡ÑÌ»¨
-		Shoot();			// ·¢ÉäÑÌ»¨
-		Show(pMem);			// ÕÀ·ÅÑÌ»¨
-		Style(st1);			// »¨Ñù·¢Éä
-		FlushBatchDraw();	// ÏÔÊ¾Ç°ÃæµÄËùÓĞ»æÍ¼²Ù×÷
+		Chose(t1);			// ç­›é€‰çƒŸèŠ±
+		Shoot();			// å‘å°„çƒŸèŠ±
+		Show(pMem);			// ç»½æ”¾çƒŸèŠ±
+		Style(st1);			// èŠ±æ ·å‘å°„
+		FlushBatchDraw();	// æ˜¾ç¤ºå‰é¢çš„æ‰€æœ‰ç»˜å›¾æ“ä½œ
 	}
 	return 0;
 }
 
-// ³õÊ¼»¯ÑÌ»¨²ÎÊı
+// åˆå§‹åŒ–çƒŸèŠ±å‚æ•°
 void Init(int i)
 {
-	// ·Ö±ğÎª£ºÑÌ»¨ÖĞĞÄµ½Í¼Æ¬±ßÔµµÄ×îÔ¶¾àÀë¡¢ÑÌ»¨ÖĞĞÄµ½Í¼Æ¬×óÉÏ½ÇµÄ¾àÀë (x¡¢y) Á½¸ö·ÖÁ¿
+	// åˆ†åˆ«ä¸ºï¼šçƒŸèŠ±ä¸­å¿ƒåˆ°å›¾ç‰‡è¾¹ç¼˜çš„æœ€è¿œè·ç¦»ã€çƒŸèŠ±ä¸­å¿ƒåˆ°å›¾ç‰‡å·¦ä¸Šè§’çš„è·ç¦» (xã€y) ä¸¤ä¸ªåˆ†é‡
 	int r[13] = { 120, 120, 155, 123, 130, 147, 138, 138, 130, 135, 140, 132, 155 };
 	int x[13] = { 120, 120, 110, 117, 110, 93, 102, 102, 110, 105, 100, 108, 110 };
 	int y[13] = { 120, 120, 85, 118, 120, 103, 105, 110, 110, 120, 120, 104, 85 };
 
-	/**** ³õÊ¼»¯ÑÌ»¨ *****/
+	/**** åˆå§‹åŒ–çƒŸèŠ± *****/
 
-	Fire[i].x = 0;				// ÑÌ»¨ÖĞĞÄ×ø±ê
+	Fire[i].x = 0;				// çƒŸèŠ±ä¸­å¿ƒåæ ‡
 	Fire[i].y = 0;
-	Fire[i].width = 240;				// Í¼Æ¬¿í
-	Fire[i].height = 240;				// Í¼Æ¬¸ß
-	Fire[i].max_r = r[i];				// ×î´ó°ë¾¶
-	Fire[i].cen_x = x[i];				// ÖĞĞÄ¾à×óÉÏ½Ç¾àÀë
+	Fire[i].width = 240;				// å›¾ç‰‡å®½
+	Fire[i].height = 240;				// å›¾ç‰‡é«˜
+	Fire[i].max_r = r[i];				// æœ€å¤§åŠå¾„
+	Fire[i].cen_x = x[i];				// ä¸­å¿ƒè·å·¦ä¸Šè§’è·ç¦»
 	Fire[i].cen_y = y[i];
-	Fire[i].show = false;			// ÊÇ·ñÕÀ·Å
-	Fire[i].dt = 5;				// ÕÀ·ÅÊ±¼ä¼ä¸ô
+	Fire[i].show = false;			// æ˜¯å¦ç»½æ”¾
+	Fire[i].dt = 5;				// ç»½æ”¾æ—¶é—´é—´éš”
 	Fire[i].t1 = timeGetTime();
-	Fire[i].r = 0;				// ´Ó 0 ¿ªÊ¼ÕÀ·Å
+	Fire[i].r = 0;				// ä» 0 å¼€å§‹ç»½æ”¾
 
-	/**** ³õÊ¼»¯ÑÌ»¨µ¯ *****/
+	/**** åˆå§‹åŒ–çƒŸèŠ±å¼¹ *****/
 
-	Jet[i].x = -240;				// ÑÌ»¨µ¯×óÉÏ½Ç×ø±ê
+	Jet[i].x = -240;				// çƒŸèŠ±å¼¹å·¦ä¸Šè§’åæ ‡
 	Jet[i].y = -240;
-	Jet[i].hx = -240;				// ÑÌ»¨µ¯·¢Éä×î¸ßµã×ø±ê
+	Jet[i].hx = -240;				// çƒŸèŠ±å¼¹å‘å°„æœ€é«˜ç‚¹åæ ‡
 	Jet[i].hy = -240;
-	Jet[i].height = 0;				// ·¢Éä¸ß¶È
+	Jet[i].height = 0;				// å‘å°„é«˜åº¦
 	Jet[i].t1 = timeGetTime();
-	Jet[i].dt = rand() % 10;		// ·¢ÉäËÙ¶ÈÊ±¼ä¼ä¸ô
-	Jet[i].n = 0;				// ÑÌ»¨µ¯ÉÁË¸Í¼Æ¬ÏÂ±ê
-	Jet[i].shoot = false;			// ÊÇ·ñ·¢Éä
+	Jet[i].dt = rand() % 10;		// å‘å°„é€Ÿåº¦æ—¶é—´é—´éš”
+	Jet[i].n = 0;				// çƒŸèŠ±å¼¹é—ªçƒå›¾ç‰‡ä¸‹æ ‡
+	Jet[i].shoot = false;			// æ˜¯å¦å‘å°„
 }
 
 
-// ¼ÓÔØÍ¼Æ¬
+// åŠ è½½å›¾ç‰‡
 void Load()
 {
-	/**** ´¢´æÑÌ»¨µÄÏñËØµãÑÕÉ« ****/
+	/**** å‚¨å­˜çƒŸèŠ±çš„åƒç´ ç‚¹é¢œè‰² ****/
 	IMAGE fm, gm;
 	loadimage(&fm, "./fire/flower.jpg", 3120, 240);
 
@@ -189,7 +188,7 @@ void Load()
 				Fire[i].xy[a][b] = getpixel(a, b);
 	}
 
-	/**** ¼ÓÔØÑÌ»¨µ¯ ************/
+	/**** åŠ è½½çƒŸèŠ±å¼¹ ************/
 	IMAGE sm;
 	loadimage(&sm, "./fire/shoot.jpg", 200, 50);
 
@@ -198,16 +197,16 @@ void Load()
 		SetWorkingImage(&sm);
 		int n = rand() % 5;
 
-		getimage(&Jet[i].img[0], n * 20, 0, 20, 50);			// °µ
-		getimage(&Jet[i].img[1], (n + 5) * 20, 0, 20, 50);		// ÁÁ
+		getimage(&Jet[i].img[0], n * 20, 0, 20, 50);			// æš—
+		getimage(&Jet[i].img[1], (n + 5) * 20, 0, 20, 50);		// äº®
 	}
 
 
-	SetWorkingImage();		// ÉèÖÃ»Ø»æÍ¼´°¿Ú
+	SetWorkingImage();		// è®¾ç½®å›ç»˜å›¾çª—å£
 }
 
 
-// ÔÚÒ»¶¨·¶Î§ÄÚÉ¸Ñ¡¿É·¢ÉäµÄÑÌ»¨£¬²¢³õÊ¼»¯·¢Éä²ÎÊı£¬Êä³öÑÌ»¨µ¯µ½ÆÁÄ»£¬²¥·ÅÉùÒô
+// åœ¨ä¸€å®šèŒƒå›´å†…ç­›é€‰å¯å‘å°„çš„çƒŸèŠ±ï¼Œå¹¶åˆå§‹åŒ–å‘å°„å‚æ•°ï¼Œè¾“å‡ºçƒŸèŠ±å¼¹åˆ°å±å¹•ï¼Œæ’­æ”¾å£°éŸ³
 void Chose(DWORD& t1)
 {
 	DWORD t2 = timeGetTime();
@@ -218,7 +217,7 @@ void Chose(DWORD& t1)
 
 		if (n < 13 && Jet[n].shoot == false && Fire[n].show == false)
 		{
-			/**** ÖØÖÃÑÌ»¨µ¯£¬Ô¤±¸·¢Éä *****/
+			/**** é‡ç½®çƒŸèŠ±å¼¹ï¼Œé¢„å¤‡å‘å°„ *****/
 			Jet[n].x = rand() % 1200;
 			Jet[n].y = rand() % 100 + 600;
 			Jet[n].hx = Jet[n].x;
@@ -227,7 +226,7 @@ void Chose(DWORD& t1)
 			Jet[n].shoot = true;
 			putimage(Jet[n].x, Jet[n].y, &Jet[n].img[Jet[n].n], SRCINVERT);
 
-			/**** ²¥·ÅÃ¿¸öÑÌ»¨µ¯µÄÉùÒô *****/
+			/**** æ’­æ”¾æ¯ä¸ªçƒŸèŠ±å¼¹çš„å£°éŸ³ *****/
 			char c1[50], c2[30], c3[30];
 			sprintf(c1, "open ./fire/shoot.mp3 alias s%d", n);
 			sprintf(c2, "play s%d", n);
@@ -242,7 +241,7 @@ void Chose(DWORD& t1)
 }
 
 
-// É¨ÃèÑÌ»¨µ¯²¢·¢Éä
+// æ‰«æçƒŸèŠ±å¼¹å¹¶å‘å°„
 void Shoot()
 {
 	for (int i = 0; i < 13; i++)
@@ -251,7 +250,7 @@ void Shoot()
 
 		if (Jet[i].t2 - Jet[i].t1 > Jet[i].dt && Jet[i].shoot == true)
 		{
-			/**** ÑÌ»¨µ¯µÄÉÏÉı *****/
+			/**** çƒŸèŠ±å¼¹çš„ä¸Šå‡ *****/
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);
 
 			if (Jet[i].y > Jet[i].hy)
@@ -262,14 +261,14 @@ void Shoot()
 
 			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);
 
-			/**** ÉÏÉıµ½¸ß¶ÈµÄ 3 / 4£¬¼õËÙ *****/
+			/**** ä¸Šå‡åˆ°é«˜åº¦çš„ 3 / 4ï¼Œå‡é€Ÿ *****/
 			if ((Jet[i].y - Jet[i].hy) * 4 < Jet[i].height)
 				Jet[i].dt = rand() % 4 + 10;
 
-			/**** ÉÏÉıµ½×î´ó¸ß¶È *****/
+			/**** ä¸Šå‡åˆ°æœ€å¤§é«˜åº¦ *****/
 			if (Jet[i].y <= Jet[i].hy)
 			{
-				// ²¥·Å±¬Õ¨Éù
+				// æ’­æ”¾çˆ†ç‚¸å£°
 				char c1[50], c2[30], c3[30];
 				sprintf(c1, "open ./fire/bomb.wav alias n%d", i);
 				sprintf(c2, "play n%d", i);
@@ -279,11 +278,11 @@ void Shoot()
 				mciSendString(c1, 0, 0, 0);
 				mciSendString(c2, 0, 0, 0);
 
-				putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	// ²ÁµôÑÌ»¨µ¯
-				Fire[i].x = Jet[i].hx + 10;											// ÔÚÑÌ»¨µ¯ÖĞ¼ä±¬Õ¨
-				Fire[i].y = Jet[i].hy;												// ÔÚ×î¸ßµãÕÀ·Å
-				Fire[i].show = true;					// ¿ªÊ¼ÕÀ·Å
-				Jet[i].shoot = false;					// Í£Ö¹·¢Éä
+				putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	// æ“¦æ‰çƒŸèŠ±å¼¹
+				Fire[i].x = Jet[i].hx + 10;											// åœ¨çƒŸèŠ±å¼¹ä¸­é—´çˆ†ç‚¸
+				Fire[i].y = Jet[i].hy;												// åœ¨æœ€é«˜ç‚¹ç»½æ”¾
+				Fire[i].show = true;					// å¼€å§‹ç»½æ”¾
+				Jet[i].shoot = false;					// åœæ­¢å‘å°„
 
 			}
 			Jet[i].t1 = Jet[i].t2;
@@ -293,20 +292,20 @@ void Shoot()
 
 
 
-// ÏÔÊ¾»¨Ñù
+// æ˜¾ç¤ºèŠ±æ ·
 void Style(DWORD& st1)
 {
 	DWORD st2 = timeGetTime();
 
-	if (st2 - st1 >20000)		// Ò»Ê×¸èµÄÊ±¼ä
+	if (st2 - st1 >20000)		// ä¸€é¦–æ­Œçš„æ—¶é—´
 	{
-		// ĞÄĞÎ×ø±ê
+		// å¿ƒå½¢åæ ‡
 		int x[13] = { 60, 75, 91, 100, 95, 75, 60, 45, 25, 15, 25, 41, 60 };
 		int y[13] = { 65, 53, 40, 22, 5, 4, 20, 4, 5, 22, 40, 53, 65 };
 		for (int i = 0; i < NUM; i++)
 		{
 			//cleardevice();
-			/**** ¹æÂÉ·Ö²¼ÑÌ»¨µ¯ ***/
+			/**** è§„å¾‹åˆ†å¸ƒçƒŸèŠ±å¼¹ ***/
 			Jet[i].x = x[i] * 10;
 			Jet[i].y = (y[i] + 75) * 10;
 			Jet[i].hx = Jet[i].x;
@@ -314,15 +313,15 @@ void Style(DWORD& st1)
 			Jet[i].height = Jet[i].y - Jet[i].hy;
 			Jet[i].shoot = true;
 			Jet[i].dt = 7;
-			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	// ÏÔÊ¾ÑÌ»¨µ¯
+			putimage(Jet[i].x, Jet[i].y, &Jet[i].img[Jet[i].n], SRCINVERT);	// æ˜¾ç¤ºçƒŸèŠ±å¼¹
 
-			/**** ÉèÖÃÑÌ»¨²ÎÊı ***/
+			/**** è®¾ç½®çƒŸèŠ±å‚æ•° ***/
 			Fire[i].x = Jet[i].x + 10;
 			Fire[i].y = Jet[i].hy;
 			Fire[i].show = false;
 			Fire[i].r = 0;
 
-			/**** ²¥·Å·¢ÉäÉùÒô ***/
+			/**** æ’­æ”¾å‘å°„å£°éŸ³ ***/
 			char c1[50], c2[30], c3[30];
 			sprintf(c1, "open ./fire/shoot.mp3 alias s%d", i);
 			sprintf(c2, "play s%d", i);
@@ -333,26 +332,25 @@ void Style(DWORD& st1)
 			mciSendString(c2, 0, 0, 0);
 		}
 		
-		outtextxy(260, 190, "ÎÒ»áºÃºÃÕÕ¹ËÄã");
-		outtextxy(260, 250, "²»ÈÃÄãÊÜÎ¯Çü");
-		outtextxy(260, 310, "ÈÃÄã¿ªĞÄÈÃÄãĞ¦£¡");
+		
+		outtextxy(260, 310, "");
 		st1 = st2;
 	}
 	
 }
 
 
-// ÕÀ·ÅÑÌ»¨
+// ç»½æ”¾çƒŸèŠ±
 void Show(DWORD* pMem)
 {
-	// ÑÌ»¨¸ö½×¶ÎÕÀ·ÅÊ±¼ä¼ä¸ô£¬ÖÆ×÷±äËÙÕÀ·ÅĞ§¹û
+	// çƒŸèŠ±ä¸ªé˜¶æ®µç»½æ”¾æ—¶é—´é—´éš”ï¼Œåˆ¶ä½œå˜é€Ÿç»½æ”¾æ•ˆæœ
 	int drt[16] = { 5, 5, 5, 5, 5, 6, 25, 25, 25, 25, 55, 55, 55, 55, 55 };
 
 	for (int i = 0; i < NUM; i++)
 	{
 		Fire[i].t2 = timeGetTime();
 
-		// Ôö¼Ó±¬Õ¨°ë¾¶£¬ÕÀ·ÅÑÌ»¨£¬Ôö¼ÓÊ±¼ä¼ä¸ô×ö±äËÙĞ§¹û
+		// å¢åŠ çˆ†ç‚¸åŠå¾„ï¼Œç»½æ”¾çƒŸèŠ±ï¼Œå¢åŠ æ—¶é—´é—´éš”åšå˜é€Ÿæ•ˆæœ
 		if (Fire[i].t2 - Fire[i].t1 > Fire[i].dt && Fire[i].show == true)
 		{
 			if (Fire[i].r < Fire[i].max_r)
@@ -370,27 +368,27 @@ void Show(DWORD* pMem)
 			Fire[i].t1 = Fire[i].t2;
 		}
 
-		// Èç¹û¸ÃºÅÅÚ»¨¿É±¬Õ¨£¬¸ù¾İµ±Ç°±¬Õ¨°ë¾¶»­ÑÌ»¨£¬ÑÕÉ«Öµ½Ó½üºÚÉ«µÄ²»Êä³ö¡£
+		// å¦‚æœè¯¥å·ç‚®èŠ±å¯çˆ†ç‚¸ï¼Œæ ¹æ®å½“å‰çˆ†ç‚¸åŠå¾„ç”»çƒŸèŠ±ï¼Œé¢œè‰²å€¼æ¥è¿‘é»‘è‰²çš„ä¸è¾“å‡ºã€‚
 		if (Fire[i].draw)
 		{
 			for (double a = 0; a <= 6.28; a += 0.01)
 			{
-				int x1 = (int)(Fire[i].cen_x + Fire[i].r * cos(a));				// Ïà¶ÔÓÚÍ¼Æ¬×óÉÏ½ÇµÄ×ø±ê
+				int x1 = (int)(Fire[i].cen_x + Fire[i].r * cos(a));				// ç›¸å¯¹äºå›¾ç‰‡å·¦ä¸Šè§’çš„åæ ‡
 				int y1 = (int)(Fire[i].cen_y - Fire[i].r * sin(a));
 
-				if (x1 > 0 && x1 < Fire[i].width && y1 > 0 && y1 < Fire[i].height)	// Ö»Êä³öÍ¼Æ¬ÄÚµÄÏñËØµã
+				if (x1 > 0 && x1 < Fire[i].width && y1 > 0 && y1 < Fire[i].height)	// åªè¾“å‡ºå›¾ç‰‡å†…çš„åƒç´ ç‚¹
 				{
 					int b = Fire[i].xy[x1][y1] & 0xff;
 					int g = (Fire[i].xy[x1][y1] >> 8) & 0xff;
 					int r = (Fire[i].xy[x1][y1] >> 16);
 
-					// ÑÌ»¨ÏñËØµãÔÚ´°¿ÚÉÏµÄ×ø±ê
+					// çƒŸèŠ±åƒç´ ç‚¹åœ¨çª—å£ä¸Šçš„åæ ‡
 					int xx = (int)(Fire[i].x + Fire[i].r * cos(a));
 					int yy = (int)(Fire[i].y - Fire[i].r * sin(a));
 
-					// ½Ï°µµÄÏñËØµã²»Êä³ö¡¢·ÀÖ¹Ô½½ç
+					// è¾ƒæš—çš„åƒç´ ç‚¹ä¸è¾“å‡ºã€é˜²æ­¢è¶Šç•Œ
 					if (r > 0x20 && g > 0x20 && b > 0x20 && xx > 0 && xx < 1100 && yy > 0 && yy < 600)
-						pMem[yy * 1100 + xx] = BGR(Fire[i].xy[x1][y1]);	// ÏÔ´æ²Ù×÷»æÖÆÑÌ»¨
+						pMem[yy * 1100 + xx] = BGR(Fire[i].xy[x1][y1]);	// æ˜¾å­˜æ“ä½œç»˜åˆ¶çƒŸèŠ±
 				}
 			}
 			Fire[i].draw = false;
